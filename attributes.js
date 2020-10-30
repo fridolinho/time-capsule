@@ -6,6 +6,14 @@ $( document ).ready(function() {
     //     return false;
     // });
 
+    // load hotspot if any
+    const hotspot = $('#hotspot');
+    if(hotspot) {
+        $('#add-hotspot').hide();
+    }
+
+
+
     // upload attributes details
     $('#save').on('click', function() {
         // get all attributes
@@ -14,9 +22,11 @@ $( document ).ready(function() {
         attributes.token = $('#token_number').val();
         attributes.arCustomImage = $('#ar_button_image').val();
         // hotspot data
-        let hotspot_data = $('#hotspot').attr('data-position') + ',' + $('#hotspot').attr('data-normal');
+        let hotspot_data = $('#hotspot').attr('data-position') + '/' + $('#hotspot').attr('data-normal');
+        let annotation_data = $('#annotation-input').val();
         if(!hotspot_data.includes("undefined")){
             attributes.hotspot = hotspot_data;
+            attributes.annotation = annotation_data;
         }
 
 
@@ -98,10 +108,12 @@ $( document ).ready(function() {
         })
 
         $('#remove-hotspot').on('click', function (){
-            $('#hotspot-ready-remove').remove();
-            $('#add-hotspot').show()
-
-            $('#add-annotation').hide()
+            const ready = $('#hotspot-ready-remove').val();
+            if(ready === "") {
+                $('#hotspot-ready-remove').remove();
+                $('#add-hotspot').show();
+                $('#add-annotation').hide();
+            }
         })
 
         $("#model").on("click", function(e) {

@@ -2,7 +2,6 @@
 body {
     width: 100%;
     margin: 0 auto;
-    background-color: lightsteelblue;
 }
 
 .hidden {
@@ -111,7 +110,7 @@ body {
  }
 
  #annotation {
-     width: 200px;
+     width: 100px;
      word-wrap: break-word;
      padding: 5px;
      font-size: 12px;
