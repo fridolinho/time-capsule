@@ -109,3 +109,11 @@ body {
  #notification {
      color: green;
  }
+
+ #annotation {
+     width: 200px;
+     word-wrap: break-word;
+     padding: 5px;
+     font-size: 12px;
+     margin-top: 20px;
+ }

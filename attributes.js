@@ -100,6 +100,8 @@ $( document ).ready(function() {
         $('#remove-hotspot').on('click', function (){
             $('#hotspot-ready-remove').remove();
             $('#add-hotspot').show()
+
+            $('#add-annotation').hide()
         })
 
         $("#model").on("click", function(e) {
@@ -121,9 +123,13 @@ $( document ).ready(function() {
                 if (normal != null) {
                     hotspot.dataset.normal = normal.toString();
                 }
+                const annotation = document.createElement('div');
+                annotation.setAttribute('id', 'annotation');
+                hotspot.appendChild(annotation);
                 viewer.appendChild(hotspot);
                 $('#add-hotspot').attr('value', 'off');
                 $('#add-hotspot').hide();
+                $('#add-annotation').show()
             };
 
             $('.hotspot').on('click', function (){
@@ -132,6 +138,16 @@ $( document ).ready(function() {
             })
 
         });
+
+        // add annotation
+
+        $('#annotation-input').on('input change', function (){
+            const annotationInput = $('#annotation-input').val();
+            if(annotationInput.length > 0) {
+                $('#annotation').html('<p>' + annotationInput + '</p>');
+                $('#annotation').css('background-color', 'grey');
+            }
+        })
 
         // shadow intensity
         $('#shadow').on('input change', function () {

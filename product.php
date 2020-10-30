@@ -36,6 +36,7 @@
         <input type="hidden" id="token_number" value="<?php echo $token ?>">
         <button id="add-hotspot">Add hotspot</button>
         <button id="remove-hotspot">Remove hotspot</button>
+        <p id="add-annotation" class="hidden">Annotation : <input type="text" id="annotation-input"></p>
         <p>Metalness : <span id="metalness-value">1</span></p>
         <input id="metalness" type="range" min="0" max="1" step="0.01" value="1">
         <p>Roughness : <span id="roughness-value"> 0 </span></p>
@@ -119,6 +120,7 @@
         style="width: 100%; height: 100vh; border: none;"
         auto-rotate camera-controls
         auto-rotate-delay="3000"
+        autoplay
         ar
         ar-mode="webxr scene-viewer quick-look"
         ar-scale="fixed"
