@@ -1,0 +1,111 @@
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    background-color: lightsteelblue;
+}
+
+.hidden {
+    display: none;
+}
+
+#ar-button {
+    position: fixed;
+    display: block;
+    left: 25%;
+    bottom: 50px;
+}
+.interactions {
+    display: none;
+}
+
+@media screen and (min-width: 800px) {
+    .interactions {
+        display: block;
+        position: fixed;
+        background-color: lightsteelblue;
+        z-index: 12;
+        width: 250px;
+        padding-left: 20px;
+        height: 100vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}
+
+
+.interactions::-webkit-scrollbar {
+    display: none;
+}
+
+.hotspot {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: blue;
+    box-sizing: border-box;
+}
+.form {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.token, #submit {
+    padding: 10px 30px;
+    display: block;
+    margin:10px 0;
+}
+
+#submit {
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+}
+
+#bg-color {
+    padding: 2px 10px;
+}
+
+.camera-axis {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkbox {
+    margin-top: 10px;
+}
+.select_image {
+    padding: 5px 0;
+    width: 90%;
+    display: none;
+}
+.arrow_down {
+    font-size:50px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.manageImages {
+    display: none;
+    padding: 10px;
+}
+
+.trash {
+    color: red;
+    margin-left: 10px;
+    cursor: pointer;
+}
+ .save_attributes {
+     margin-bottom: 20px;
+     padding: 5px 10px;
+ }
+
+ #notification {
+     color: green;
+ }
