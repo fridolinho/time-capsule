@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     const modelViewerParameters = document.querySelector("model-viewer#model");
-
     modelViewerParameters.addEventListener("scene-graph-ready", (ev) => {
         let material = modelViewerParameters.model.materials[0];
         let metalnessDisplay = document.querySelector("#metalness-value");
         let roughnessDisplay = document.querySelector("#roughness-value");
-        console.log(metalnessDisplay, roughnessDisplay);
 
         metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
         roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
