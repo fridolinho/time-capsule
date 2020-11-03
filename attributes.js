@@ -2,14 +2,17 @@
 $( document ).ready(function() {
 
     // disable right-click
-    // $(document).bind("contextmenu", function(e) {
-    //     return false;
-    // });
+    $(document).bind("contextmenu", function(e) {
+        return false;
+    });
+
 
     // load hotspot if any
     const hotspot = $('#hotspot');
-    if(hotspot) {
+    if(hotspot.length) {
+        const color = $('#hotspot_color').find('option:selected').text();
         $('#add-hotspot').hide();
+        hotspot.css('background-color', color);
     }
 
 
@@ -28,6 +31,7 @@ $( document ).ready(function() {
             attributes.hotspot = hotspot_data;
             attributes.annotation = annotation_data;
         }
+        attributes.hotspot_color = $('#hotspot_color').find('option:selected').text();
 
 
         // exposure and shadow
@@ -49,7 +53,7 @@ $( document ).ready(function() {
         attributes.delay = model.attr('auto-rotate-delay');
 
         // background color
-        attributes.bgColor = $('body').css('background-color');
+        attributes.bgColor = $('#hex_color').val();
 
         // skybox and environment images
         attributes.skybox = model.attr('skybox-image');
@@ -113,6 +117,7 @@ $( document ).ready(function() {
                 $('#hotspot-ready-remove').remove();
                 $('#add-hotspot').show();
                 $('#add-annotation').hide();
+                $('#hotspot_color').hide();
             }
         })
 
@@ -142,6 +147,7 @@ $( document ).ready(function() {
                 $('#add-hotspot').attr('value', 'off');
                 $('#add-hotspot').hide();
                 $('#add-annotation').show()
+                $('#hotspot_color').show();
             };
 
             $('.hotspot').on('click', function (){
@@ -159,6 +165,13 @@ $( document ).ready(function() {
                 $('#annotation').html('<p>' + annotationInput + '</p>');
                 $('#annotation').css('background-color', 'grey');
             }
+        })
+
+        // hotspot color change
+
+        $('#hotspot_color_selector').on('change', function(){
+            color = $(this).find('option:selected').text();
+            $('#hotspot').css('background-color', color);
         })
 
         // shadow intensity
@@ -203,6 +216,7 @@ $( document ).ready(function() {
         $('#bg-color').on('input', function() {
             const color = $(this).val();
             if(color.length === 7&&color.includes('#')) {
+                $('#hex_color').attr('value', color);
                 $('body').css('background-color', color);
             }
         })

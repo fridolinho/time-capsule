@@ -1,22 +1,24 @@
-const modelViewerParameters = document.querySelector("model-viewer#model");
+document.addEventListener("DOMContentLoaded", function(event) { 
+    const modelViewerParameters = document.querySelector("model-viewer#model");
 
-modelViewerParameters.addEventListener("scene-graph-ready", (ev) => {
-    let material = modelViewerParameters.model.materials[0];
-    let metalnessDisplay = document.querySelector("#metalness-value");
-    let roughnessDisplay = document.querySelector("#roughness-value");
+    modelViewerParameters.addEventListener("scene-graph-ready", (ev) => {
+        let material = modelViewerParameters.model.materials[0];
+        let metalnessDisplay = document.querySelector("#metalness-value");
+        let roughnessDisplay = document.querySelector("#roughness-value");
+        console.log(metalnessDisplay, roughnessDisplay);
 
-    metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
-    roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
+        metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
+        roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
+        material.pbrMetallicRoughness.setBaseColorFactor([1,1, 1]);
 
-    document.querySelector('#metalness').addEventListener('input', (event) => {
-        // Defaults to gold
-        material.pbrMetallicRoughness.setBaseColorFactor([0.0000, 0.0000, 0.0000]);
-        material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
-        metalnessDisplay.textContent = event.target.value;
-    });
+        document.querySelector('#metalness').addEventListener('input', (event) => {
+            material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
+            metalnessDisplay.textContent = event.target.value;
+        });
 
-    document.querySelector('#roughness').addEventListener('input', (event) => {
-        material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
-        roughnessDisplay.textContent = event.target.value;
-    });
-})
+        document.querySelector('#roughness').addEventListener('input', (event) => {
+            material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
+            roughnessDisplay.textContent = event.target.value;
+        });
+    })
+});

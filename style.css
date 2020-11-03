@@ -18,7 +18,7 @@ body {
     display: none;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
     .interactions {
         display: block;
         position: fixed;
@@ -44,7 +44,6 @@ body {
     height: 20px;
     border-radius: 10px;
     border: none;
-    background-color: blue;
     box-sizing: border-box;
 }
 .form {

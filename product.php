@@ -24,21 +24,10 @@
         $auto = $p->auto_rotate;
         $bgColor = $p->background_color;
         if($bgColor === "") {
-            $backGround = "lightsteelblue";
+            $bgColor = "lightsteelblue";
         }
-//        else {
-//            $sRegex     = '/rgba?(\s?([0-9]{1,3}),\s?([0-9]{1,3}),\s?([0-9]{1,3})/i';
-//
-//            preg_match($sRegex, $bgColor, $matches);
-//            if(count($matches) != 4){
-//                die('The color count does not match.');
-//            }
-//            $iRed   = (int) $matches[1];
-//            $iGreen = (int) $matches[2];
-//            $iBlue  = (int) $matches[3];
-//
-//            $backGround = '#' . dechex($iRed) . dechex($iGreen) . dechex($iBlue);
-//        }
+        $hotspot_color = $p->hotspot_color;
+       
         $customARButton = $p->ar_button_image;
         if($customARButton === "") {
             $customARButton = "./assets/img/AR Button ARI8.png";
@@ -64,16 +53,23 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="attributes.js"></script>
     <script src="sky_env_upload.js"></script>
+    <script src="graph-scene.js"></script>
     <title>Product view</title>
 </head>
-<body style="background-color: <?php echo $backGround; ?>">
+<body style="background-color: <?php echo $bgColor; ?>">
 <div id="interactions" class="interactions">
     <h3>Model Viewer interactions</h3>
     <span id="arrow" class="arrow_down">&#8595;</span>
     <div id="controls">
         <input type="hidden" id="token_number" value="<?php echo $token ?>">
+        <input type="hidden" id="hex_color" value="<?php echo $bgColor; ?>">
         <button id="add-hotspot">Add hotspot</button>
         <button id="remove-hotspot">Remove hotspot</button>
+        <p id="hotspot_color" class="hidden">Hotspot Color :
+            <select id=hotspot_color_selector>
+                <option <?php if($hotspot_color === "blue") echo "selected"; ?> value="blue">blue</option>
+                <option <?php if($hotspot_color === "red") echo "selected"; ?> value="red">red</option>
+            </select>
         <p id="add-annotation" class="hidden">Annotation : <input type="text" id="annotation-input"></p>
         <p>Metalness : <span id="metalness-value">1</span></p>
         <input id="metalness" type="range" min="0" max="1" step="0.01" value="1">
@@ -87,7 +83,7 @@
         <input id="softness" type="range" min="0" max="1" step="0.1" value="<?php echo $softness; ?>">
         <p>Auto rotate <input id="auto_rotate" type="checkbox" checked /> </p>
         <p>Auto rotate delay: <input id="delay" type="number" value="<?php echo $delay; ?>" min="1" max="5"></p>
-        <p>BG color: <input id="bg-color" type="text" placeholder="#ffffff" value="<?php echo $backGround; ?>"></p>
+        <p>BG color: <input id="bg-color" type="text" placeholder="#ffffff" value="<?php echo $bgColor; ?>"></p>
         <input type="checkbox" id="skybox" class="checkbox"/>
         <label>Skybox Images</label>
         <br />
@@ -179,25 +175,31 @@
         environment-image="<?php echo $env; ?>"
         skybox-image="<?php echo $skybox; ?>"
     >
-        <input type="image" src="<?php echo $customARButton; ?>" slot="ar-button" id="ar-button" style="width: 50%"/>
+        <input 
+            type="image" 
+            src="<?php echo $customARButton . '#applePayButtonType=plain&checkoutTitle=Retro%20Alarm%20Clock&checkoutSubtitle=With%20built-in%20FM%20tuner&price=$92.50'; ?>" slot="ar-button" id="ar-button" style="width: 50%"
+        />
         <?php
         if($hotspot !== "") {
             ?>
             <button
-                    id="hotspot"
-                    class="hotspot"
-                    slot="hotspot-foot"
-                    data-position="<?php echo $hotspotPosition[0]; ?>"
-                    data-normal="<?php echo $hotspotPosition[1] ?>"
-                    data-visibility-attribute="visible"
+                id="hotspot"
+                class="hotspot"
+                slot="hotspot-foot"
+                data-position="<?php echo $hotspotPosition[0]; ?>"
+                data-normal="<?php echo $hotspotPosition[1] ?>"
+                data-visibility-attribute="visible"
             >
-                <div id="annotation" style="background-color: grey"><?php echo $annotation; ?></div>
+            <?php if ($annotation !== "") {
+            ?>
+            <div id="annotation" style="background-color: grey"><?php echo $annotation; ?></div>
+            <?php
+            } ?>             
             </button>
             <?php
         }
         ?>
     </model-viewer>
-    <script src="graph-scene.js"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </body>

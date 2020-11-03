@@ -23,6 +23,7 @@
             $annotation = "";
             $hotspot = "";
         }
+        $hotspot_color = $_POST['hotspot_color'];
         $field = $_POST['fieldOfView'];
         $exposure = $_POST['exposure'];
         $env = $_POST['environment'];
@@ -40,6 +41,7 @@
             shadow_softness = '".$softness."',
             hotspot = '".$hotspot."',
             annotations = '".$annotation."',
+            hotspot_color = '".$hotspot_color."',
             field_of_view = '".$field."',
             exposure = '".$exposure."',
             environment_image = '".$env."',
