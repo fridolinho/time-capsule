@@ -15,6 +15,34 @@ $( document ).ready(function() {
         hotspot.css('background-color', color);
     }
 
+    // poster
+    let posterUrl = '';
+    const link = document.createElement('a');
+    const downloadButton = document.getElementById('download');
+    downloadButton.disabled = true;
+    const orbitString = $('#cameraOrbit');
+    $('#createPoster').on('click', async function(){
+        const viewer = document.querySelector("model-viewer#model");
+        const orbit = viewer.getCameraOrbit();
+        orbitString.attr('value', `${orbit.theta}rad ${orbit.phi}rad auto`);
+        viewer.fieldOfView = 'auto';
+        viewer.jumpCameraToGoal();
+        await new Promise(resolve => requestAnimationFrame(() => resolve()));
+        URL.revokeObjectURL(posterUrl);
+        const blob = await viewer.toBlob({ mimeType: 'image/png', idealAspect: true });
+        posterUrl = URL.createObjectURL(blob);
+        console.log(posterUrl);
+        downloadButton.disabled = false;
+    })
+
+    $('#download').on('click', function() {
+        link.href = posterUrl;
+        link.download = 'poster.png';
+        link.click();
+        downloadButton.disabled = true;
+    })
+       
+
 
 
     // upload attributes details

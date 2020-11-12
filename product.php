@@ -177,9 +177,9 @@
                 }
             ?>
             <br/>
-            <button class="poster-btn" onclick="createPoster()">Create Poster</button><br/>
-            <button class="poster-btn" id="display" onclick="reloadScene()">Display Poster</button><br/>
-            <button class="poster-btn" id="download" onclick="downloadPoster()">Download Poster</button><br/>
+            <button class="poster-btn" id="createPoster">Create Poster</button><br/>
+            <input type="hidden" id="cameraOrbit">
+            <button class="poster-btn" id="download">Download Poster</button><br/>
             <div>
                 <div id="notification"></div>
                 <button id="save" class="save_attributes">Save</button>
