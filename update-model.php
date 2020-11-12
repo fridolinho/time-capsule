@@ -34,6 +34,8 @@
         $auto = $_POST['auto_rotate'];
         $delay = $_POST['delay'];
         $bgColor = $_POST['bgColor'];
+        $alt = $_POST['alt'];
+        $ar_scale = $_POST['ar_scale'];
 
         $results = $conn->query("
             UPDATE sys_items 
@@ -51,9 +53,12 @@
             camera_target = '".$target."',
             auto_rotate = '".$auto."',
             auto_rotate_delay = '".$delay."',
-            background_color = '".$bgColor."'
+            background_color = '".$bgColor."',
+            ar_scale = '".$ar_scale."',
+            alt = '".$alt."'
             WHERE token_number = '".$token."'"
         );
+        echo $results;
         if($results == 1) {
             echo 'done';
         };

@@ -2,9 +2,9 @@
 $( document ).ready(function() {
 
     // disable right-click
-    $(document).bind("contextmenu", function(e) {
-        return false;
-    });
+    // $(document).bind("contextmenu", function(e) {
+    //     return false;
+    // });
 
 
     // load hotspot if any
@@ -51,6 +51,9 @@ $( document ).ready(function() {
         }
 
         attributes.delay = model.attr('auto-rotate-delay');
+
+        attributes.alt = $('#alt-text').val();
+        attributes.ar_scale = $('#ar_scale_selector').find('option:selected').text();
 
         // background color
         attributes.bgColor = $('#hex_color').val();
