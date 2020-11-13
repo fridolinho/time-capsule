@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
         roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
-        material.pbrMetallicRoughness.setBaseColorFactor([1,1, 1]);
+        // material.pbrMetallicRoughness.setBaseColorFactor([1,1, 1]);
 
         document.querySelector('#metalness').addEventListener('input', (event) => {
             material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
