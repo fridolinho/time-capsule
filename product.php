@@ -18,9 +18,19 @@
         $skybox =$p->skybox_image;
         $target = $p->camera_target;
         $ar_scale = $p->ar_scale;
-        $orbit = $p->camera_orbit;
-        $orbit = explode(" ", $orbit);
-        if($target === 'auto') {
+        $orbit_og = $p->camera_orbit;
+        $minOrbit_og = $p->min_orbit;
+        $maxOrbit_og = $p->max_orbit;
+        if($orbit_og !== 'auto'){
+            $orbit = explode(" ", $orbit_og);
+        }
+        if($minOrbit_og !== 'auto'){
+            $minOrbit = explode(" ", $minOrbit_og);
+        }
+        if($maxOrbit_og !== 'auto'){
+            $maxOrbit = explode(" ", $maxOrbit_og);
+        }
+        if($target !== 'auto') {
             $target = explode(" ", $target);
         }
         $delay = $p->auto_rotate_delay;
@@ -160,9 +170,21 @@
             ?> 
             <p>Camera orbit</p>
             <div>
-                <span class="camera-axis">X: <input id="orbit-x" type="number" min="0" max="360" step="1" value="<?php echo str_replace("deg", "", $orbit[0]); ?>"></span>
-                <span class="camera-axis">Y: <input id="orbit-y" type="number" min="20" max="180" step="1" value="<?php echo str_replace("deg", "", $orbit[1]); ?>"></span>
-                <span class="camera-axis">Z: <input id="orbit-z" type="number" min="40" max="100" step="1" value="<?php echo str_replace("%", "", $orbit[2]); ?>"></span>
+                <span class="camera-axis">X: <input id="orbit-x" type="number" min="<?php echo str_replace("deg", "", $minOrbit[0]); ?>" max="<?php echo str_replace("deg", "", $maxOrbit[0]); ?>" step="1" value="<?php echo str_replace("deg", "", $orbit[0]); ?>"></span>
+                <span class="camera-axis">Y: <input id="orbit-y" type="number" min="<?php echo str_replace("deg", "", $minOrbit[1]); ?>" max="<?php echo str_replace("deg", "", $maxOrbit[1]); ?>" step="1" value="<?php echo str_replace("deg", "", $orbit[1]); ?>"></span>
+                <span class="camera-axis">Z: <input id="orbit-z" type="number" min="<?php echo str_replace("%", "", $minOrbit[2]); ?>" max="<?php echo str_replace("deg", "", $maxOrbit[2]); ?>" step="1" value="<?php echo str_replace("%", "", $orbit[2]); ?>"></span>
+            </div>
+            <p>Min Camera orbit</p>
+            <div>
+                <span class="camera-axis">X: <input id="min-orbit-x" type="number" min="0" max="360" step="1" value="<?php echo str_replace("deg", "", $minOrbit[0]); ?>"></span>
+                <span class="camera-axis">Y: <input id="min-orbit-y" type="number" min="20" max="180" step="1" value="<?php echo str_replace("deg", "", $minOrbit[1]); ?>"></span>
+                <span class="camera-axis">Z: <input id="min-orbit-z" type="number" min="40" max="100" step="1" value="<?php echo str_replace("%", "", $minOrbit[2]); ?>"></span>
+            </div>
+            <p>Max Camera orbit</p>
+            <div>
+                <span class="camera-axis">X: <input id="max-orbit-x" type="number" min="0" max="360" step="1" value="<?php echo str_replace("deg", "", $maxOrbit[0]); ?>"></span>
+                <span class="camera-axis">Y: <input id="max-orbit-y" type="number" min="20" max="180" step="1" value="<?php echo str_replace("deg", "", $maxOrbit[1]); ?>"></span>
+                <span class="camera-axis">Z: <input id="max-orbit-z" type="number" min="40" max="100" step="1" value="<?php echo str_replace("%", "", $maxOrbit[2]); ?>"></span>
             </div>
             <p>Camera target</p>
             <div>
@@ -206,9 +228,9 @@
         shadow-intensity="<?php echo $intensity; ?>"
         shadow-softness="<?php echo $softness; ?>"
         exposure="<?php echo $exposure; ?>"
-        camera-orbit="<?php echo $orbit; ?>"
-        min-camera-orbit="auto"
-        max-camera-orbit="auto"
+        camera-orbit="<?php echo $orbit_og; ?>"
+        min-camera-orbit="<?php echo $minOrbit_og; ?>"
+        max-camera-orbit="<?php echo $maxOrbit_og; ?>"
         camera-target="auto"
         field-of-view="<?php echo $field; ?>"
         environment-image="<?php echo $env; ?>"
