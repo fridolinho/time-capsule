@@ -108,7 +108,6 @@ $( document ).ready(function() {
             contentType : false,
             type: 'POST'
         }).done(function(data){
-            console.log(data);
             if(data === "done") {
                 $('#notification').text('attributes saved');
                 setTimeout(function(){

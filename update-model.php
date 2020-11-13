@@ -58,7 +58,6 @@
             alt = '".$alt."'
             WHERE token_number = '".$token."'"
         );
-        echo $results;
         if($results == 1) {
             echo 'done';
         };
