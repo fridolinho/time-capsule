@@ -16,7 +16,7 @@
         $field = $p->field_of_view;
         $env = $p->environment_image;
         $skybox =$p->skybox_image;
-        $target = $p->camera_target;
+        $target_og = $p->camera_target;
         $ar_scale = $p->ar_scale;
         $orbit_og = $p->camera_orbit;
         $minOrbit_og = $p->min_orbit;
@@ -30,8 +30,8 @@
         if($maxOrbit_og !== 'auto'){
             $maxOrbit = explode(" ", $maxOrbit_og);
         }
-        if($target !== 'auto') {
-            $target = explode(" ", $target);
+        if($target_og !== 'auto') {
+            $target = explode(" ", $target_og);
         }
         $delay = $p->auto_rotate_delay;
         $auto = $p->auto_rotate;
@@ -231,14 +231,17 @@
         camera-orbit="<?php echo $orbit_og; ?>"
         min-camera-orbit="<?php echo $minOrbit_og; ?>"
         max-camera-orbit="<?php echo $maxOrbit_og; ?>"
-        camera-target="auto"
+        camera-target="<?php echo $target_og; ?>"
         field-of-view="<?php echo $field; ?>"
         environment-image="<?php echo $env; ?>"
         skybox-image="<?php echo $skybox; ?>"
     >
         <input 
             type="image" 
-            src="<?php echo $customARButton . '#applePayButtonType=plain&checkoutTitle=Retro%20Alarm%20Clock&checkoutSubtitle=With%20built-in%20FM%20tuner&price=$92.50'; ?>" slot="ar-button" id="ar-button" style="width: 50%"
+            id="ar-button" 
+            style="width: 50%"
+            src="<?php echo $customARButton; ?>" 
+            slot="ar-button" 
         />
         <?php
         if($hotspot !== "") {
@@ -261,6 +264,9 @@
         }
         ?>
     </model-viewer>
+    <script>
+    
+    </script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </body>

@@ -17,9 +17,8 @@ $( document ).ready(function() {
 
     // min and max camera orbit
 
-    $('#min-orbit-x').change(function () {
-        const value = $(this).val();
-        console.log(value);
+    $('#min-orbit-x').on('input change', function () {
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('min-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
@@ -28,7 +27,7 @@ $( document ).ready(function() {
 
 
     $('#min-orbit-y').change(function () {
-        const value = $(this).val();
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + value + 'deg' + ' ' + orbit_data[2]);
@@ -36,7 +35,7 @@ $( document ).ready(function() {
     })
 
     $('#min-orbit-z').change(function () {
-        const value = $(this).val();
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
@@ -44,7 +43,7 @@ $( document ).ready(function() {
     })
 
     $('#max-orbit-x').change(function () {
-        const value = $(this).val();
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('max-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
@@ -53,7 +52,7 @@ $( document ).ready(function() {
 
 
     $('#max-orbit-y').change(function () {
-        const value = $(this).val();
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + value + 'deg' + ' ' + orbit_data[2]);
@@ -61,13 +60,12 @@ $( document ).ready(function() {
     })
 
     $('#max-orbit-z').change(function () {
-        const value = $(this).val();
+        const value = $(this).val() || 0;
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
         $('#orbit-z').attr('max', value);
     })
-
 
     // poster
     let posterUrl = '';
@@ -184,6 +182,7 @@ $( document ).ready(function() {
     });
 
     // model attributes
+
     if($('#model').attr('src').length > 0) {
         $('#model').removeClass('hidden');
 
