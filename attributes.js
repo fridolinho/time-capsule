@@ -18,53 +18,69 @@ $( document ).ready(function() {
     // min and max camera orbit
 
     $('#min-orbit-x').on('input change', function () {
-        const value = $(this).val() || 0;
+        const value = $(this).val() || -Infinity;
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
-        $('#model').attr('min-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
-        $('#orbit-x').attr('min', value);
+        if(value !== -Infinity) {
+            $('#model').attr('min-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
+            $('#orbit-x').attr('min', value);
+        } else {
+            $('#model').attr('min-camera-orbit', + value + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
+        }
     })
 
 
-    $('#min-orbit-y').change(function () {
-        const value = $(this).val() || 0;
+    $('#min-orbit-y').on('input change', function () {
+        const value = $(this).val() || 22.5;
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + value + 'deg' + ' ' + orbit_data[2]);
         $('#orbit-y').attr('min', value);
     })
 
-    $('#min-orbit-z').change(function () {
-        const value = $(this).val() || 0;
+    $('#min-orbit-z').on('input change', function () {
+        const value = $(this).val() || "auto";
         let orbit_data = $('#model').attr('min-camera-orbit');
         orbit_data = orbit_data.split(' ');
-        $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
-        $('#orbit-z').attr('min', value);
+        if(value !== "auto") {
+            $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
+            $('#orbit-z').attr('min', value);
+        } else {
+            $('#model').attr('min-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value);
+        }
     })
 
-    $('#max-orbit-x').change(function () {
-        const value = $(this).val() || 0;
+    $('#max-orbit-x').on('input change', function () {
+        const value = $(this).val() || Infinity;
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
-        $('#model').attr('max-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
-        $('#orbit-x').attr('max', value);
+        if(value !== Infinity) {
+            $('#model').attr('max-camera-orbit', + value + 'deg' + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
+            $('#orbit-x').attr('max', value);
+        } else {
+            $('#model').attr('max-camera-orbit', + value + ' ' + orbit_data[1] + ' ' + orbit_data[2]);
+        }
     })
 
 
-    $('#max-orbit-y').change(function () {
-        const value = $(this).val() || 0;
+    $('#max-orbit-y').on('input change', function () {
+        const value = $(this).val() || 157.5;
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
         $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + value + 'deg' + ' ' + orbit_data[2]);
         $('#orbit-y').attr('max', value);
     })
 
-    $('#max-orbit-z').change(function () {
-        const value = $(this).val() || 0;
+    $('#max-orbit-z').on('input change', function () {
+        const value = $(this).val() || "auto";
         let orbit_data = $('#model').attr('max-camera-orbit');
         orbit_data = orbit_data.split(' ');
-        $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
-        $('#orbit-z').attr('max', value);
+        if(value !== "auto") {
+            $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value + '%');
+            $('#orbit-z').attr('max', value);
+        } else {
+            $('#model').attr('max-camera-orbit', orbit_data[0] + ' ' + orbit_data[1] + ' ' + value);
+        }
     })
 
     // poster
