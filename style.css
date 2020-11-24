@@ -20,7 +20,7 @@ body {
 
 @media screen and (min-width: 900px) {
     .interactions {
-        display: block;
+        display: none;
         position: fixed;
         background-color: lightsteelblue;
         z-index: 12;
