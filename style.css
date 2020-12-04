@@ -45,6 +45,7 @@ body {
     border-radius: 10px;
     border: none;
     box-sizing: border-box;
+    background-color: blue;
 }
 .form {
     width: 400px;
