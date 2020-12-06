@@ -104,7 +104,9 @@
             >
             <?php if ($annotation !== "") {
             ?>
-            <div id="annotation" style="background-color: grey"><?php echo $annotation; ?></div>
+            <div id="annotation" style="background-color: grey">
+                <?php echo $annotation; ?>
+            </div>
             <?php
             } ?>             
             </button>
