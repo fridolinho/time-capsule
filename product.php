@@ -30,9 +30,8 @@
         $hotspot_color = $p->hotspot_color;
        
         $customARButton = $p->ar_button_image;
-        if($customARButton === "") {
-            $customARButton = "./dashboard/storage/ar_images/ARI_Button.png";
-        }
+        $customARButton = ($p->ar_button_image == "") ? "./dashboard/storage/ar_images/ARI_Button.png" : "./dashboard/storage/ar_images/" . $p->ar_button_image;
+   
         $images = explode("/", $images);
         $ios_image = "./dashboard/storage/items/" . $images[1];
         $src = "./dashboard/storage/items/" . $images[0];
