@@ -8,7 +8,7 @@ body {
     display: none;
 }
 
-#ar-button {
+.ar_button {
     position: fixed;
     display: block;
     left: 25%;

@@ -15,14 +15,23 @@
         $annotation = $p->annotations;
         $field = $p->field_of_view;
         $env = $p->environment_image;
-        $skybox =$p->skybox_image;
+        $skybox = $p->skybox_image;
+        if ($env !== ''){
+            $env = 'dashboard/storage/skybox_env_images/' . $env;
+        }
+        if ($skybox !== ''){
+            $skybox = 'dashboard/storage/skybox_env_images/' . $skybox_image;
+        }
+        $target_og = $p->camera_target;
         $target_og = $p->camera_target;
         $ar_scale = $p->ar_scale;
+        $ar_placement = $p->ar_placement;
         $orbit_og = $p->camera_orbit;
         $minOrbit_og = $p->min_orbit;
         $maxOrbit_og = $p->max_orbit;
         $delay = $p->auto_rotate_delay;
         $auto = $p->auto_rotate;
+        $disable_zoom = $p->disable_zoom;
         $bgColor = $p->background_color;
         if($bgColor === "") {
             $bgColor = "lightsteelblue";
@@ -66,10 +75,11 @@
         auto-rotate-delay="<?php echo $delay; ?>"
         autoplay
         ar
-        ar-mode="webxr scene-viewer quick-look"
+        ar-modes="webxr scene-viewer quick-look"
         ar-scale="<?php echo $ar_scale; ?>"
+        camera-controls disable-zoom
         ios-src="<?php echo $ios_image ?>"
-        camera-controls
+        magic-leap 
         quick-look-browsers="safari chrome firefox"
         shadow-intensity="<?php echo $intensity; ?>"
         shadow-softness="<?php echo $softness; ?>"
@@ -79,12 +89,13 @@
         max-camera-orbit="<?php echo $maxOrbit_og; ?>"
         camera-target="<?php echo $target_og; ?>"
         field-of-view="<?php echo $field; ?>"
-        environment-image="<?php echo $env; ?>"
-        skybox-image="<?php echo $skybox; ?>"
+        environment-image="<?php echo $env; ?>";
+        skybox-image="<?php echo $skybox; ?>";
     >
         <input 
             type="image" 
             id="ar-button" 
+            class="ar_button"
             style="width: 50%"
             src="<?php echo $customARButton; ?>" 
             slot="ar-button" 
@@ -113,9 +124,6 @@
         }
         ?>
     </model-viewer>
-    <script>
-    
-    </script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </body>
