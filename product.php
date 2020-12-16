@@ -39,7 +39,7 @@
         $hotspot_color = $p->hotspot_color;
        
         $customARButton = $p->ar_button_image;
-        $customARButton = ($p->ar_button_image == "") ? "./dashboard/storage/ar_images/ARI_Button.png" : "./dashboard/storage/ar_images/" . $p->ar_button_image;
+        $customARButton = ($p->ar_button_image == "") ? "./dashboard/storage/ar_images/white.png" : "./dashboard/storage/ar_images/" . $p->ar_button_image;
    
         $images = explode("/", $images);
         $ios_image = "./dashboard/storage/items/" . $images[1];
@@ -75,11 +75,10 @@
         auto-rotate-delay="<?php echo $delay; ?>"
         autoplay
         ar
-        ar-modes="webxr scene-viewer quick-look"
+        ar-modes="scene-viewer quick-look webxr"
         ar-scale="<?php echo $ar_scale; ?>"
         camera-controls disable-zoom
         ios-src="<?php echo $ios_image ?>"
-        magic-leap 
         quick-look-browsers="safari chrome firefox"
         shadow-intensity="<?php echo $intensity; ?>"
         shadow-softness="<?php echo $softness; ?>"
@@ -126,6 +125,16 @@
     </model-viewer>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131519727-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131519727-1');
+    </script>
 </body>
 </html>
 
