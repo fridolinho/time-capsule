@@ -6,6 +6,7 @@
     if($response !== 'false') {
         $p = json_decode($response);
         $images = $p->image;
+        $name = $p->name;
         $alt = $p->alt ?: $p->name;
         $exposure = $p->exposure;
         $intensity = $p->shadow_intensity;
@@ -57,10 +58,11 @@
         name="description"
         content="product preview"
     />
+    <link rel="icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <title>Product view</title>
+    <title><?php echo $name; ?>-AR Innovations</title>
 </head>
 <body style="background-color: <?php echo $bgColor; ?>">
     <model-viewer
